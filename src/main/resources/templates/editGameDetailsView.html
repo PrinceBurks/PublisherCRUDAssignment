@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/site.css"th:href ="@{/css/site.css}" rel="stylesheet"/>
+    <title>Publisher Details</title>
+</head>
+<body>
+    <h1 th:text="${publisher.getName()}">some text</h1>
+    <h3><a th:href="@{/}">back</a></h3>
+    <table>
+        <tr th:each="game:${publisher.getGames()}">
+            <td th:text="${game.getName()}" id="text"></td><br>
+            <td ><form action="/edit-title" method="POST">
+    <input name="name" type="text" placeholder="Change title">
+    <input type="hidden" name="gameId" th:value="${publisher.getId()}">
+    <input type="hidden" name="gameName" th:value="${game.getName()}">
+    <button type="submit">Edit title</button>
+</form></td>            
+            <td th:text="${game.getDescription()}" id="text"></td>
+            
+            <td ><form action="/edit-description" method="POST">
+    <input name="description" type="text" placeholder="Change Description">
+    <input type="hidden" name="gameId" th:value="${publisher.getId()}">
+    <input type="hidden" name="gameName" th:value="${game.getName()}">
+    <button type="submit">Edit Description</button>
+</form></td>
+        </tr>
+    </table>
+
+    <h3 id="text">Add A Game</h3>
+    <form action="/add-game" method="POST">
+    <input type="hidden" name="gameId" th:value="${publisher.getName()}">
+    <input type="hidden" name="pubId" th:value="${publisher.getId()}">
+        <input  name="gameName" type="text" placeholder="Title">
+        <input  name="gameDes" type="text" placeholder="Description">
+        <input  name="imgUrl" type="text" placeholder="Game image Url">
+        <button type="submit">Add Game</button>
+    </form>
+    
+</body>
+</html>

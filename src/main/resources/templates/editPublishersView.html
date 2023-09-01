@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link
+        href="../static/css/site.css"
+        th:href="@{/css/site.css}"
+        rel="stylesheet"
+      />
+      <title>Publisher</title>
+    </head>
+    <body>
+      <h1>Game Publishers</h1>
+
+      <h3><a th:href="@{/}">back</a></h3>
+      <form action="/add-publisher" method="POST">
+            <input type="text" name="name">
+            <button type="submit">Add Publisher</button>
+          </form>
+      <table>
+        <tr th:each="publisher:${publishers}">
+          <td th:text="${publisher.getName()}" id="text"></td>
+          <td>
+            <form action="/edit-publisher" method="POST">
+                <input name="pubName" type="hidden" th:value="${publisher.getName()}" />
+              <input name="name" type="text" placeholder="Title" />            
+             
+              <button type="submit">Edit Publisher</button>
+            </form>
+          </td>
+</tr>
+      </table>
+          
+        
+    </body>
+  </html>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../static/css/site.css"th:href ="@{/css/site.css}" rel="stylesheet"/>
+    <title>Publisher</title>
+</head>
+<body>
+    <h1>Game Publishers</h1>
+    <h6><a th:href="@{publisher/editPublishers}">Edit/Create Publisher</a></h6>
+    <table>
+        <tr th:each="publisher:${publishers}">
+            <td th:text="${publisher.getName()}" id="text"></td>
+            <td> <a th:href="@{publisher/gameDetails/} + ${publisher.getId()}" id="text" >Details</a></td>
+            <td> <a th:href="@{publisher/editPublisher/} + ${publisher.getId()}" id="text">Edit</a></td>
+            <td> <a th:href="@{publisher/deletePublisher/} + ${publisher.getId()}" id="text">Delete</a></td>
+    </tr></table>
+</body>
+</html>
