@@ -12,6 +12,7 @@ import jakarta.annotation.Resource;
 @Controller
 public class PublisherController {
 
+    
     @Resource
     private PublisherRepo repo;
 
